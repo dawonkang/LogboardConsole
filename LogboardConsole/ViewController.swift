@@ -31,11 +31,13 @@ final class ViewController: NSViewController {
         guard let level = Logboard.Level(string: sender.selectedItem?.title ?? "") else {
             return
         }
+        self.level = level
         textFiled.string = ""
         let logs = self.logs.filter{ level.rawValue <= $0.level.rawValue }
         for log in logs {
             textFiled.textStorage?.append(log.attributedString)
         }
+        textFiled.scrollToEndOfDocument(nil)
     }
 
     private func render(_ data: Logboard.Data) {
@@ -44,6 +46,7 @@ final class ViewController: NSViewController {
             return
         }
         textFiled.textStorage?.append(data.attributedString)
+        textFiled.scrollToEndOfDocument(nil)
     }
 }
 

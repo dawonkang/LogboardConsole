@@ -2,6 +2,8 @@
 iOS, macOS, tvOS, watchOS Debugging Tool, Logging console via Network.  
 LogboardConsole is a logging console applicaiton.
 
+![Screenshot](https://github.com/shogo4405/LogboardConsole/blob/master/README/screenshot.gif)
+
 ## How to build
 ### Download
 ```
@@ -24,7 +26,6 @@ let socket = SocketAppender()
 socket.connect("toHost", 22222)
 logger.appender = socket
 ```
->>>>>>> origin/master
 
 ## License
 New BSD
