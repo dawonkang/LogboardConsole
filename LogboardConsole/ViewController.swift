@@ -27,6 +27,11 @@ final class ViewController: NSViewController {
         }
     }
 
+    @IBAction func didClickedTrash(_ sender:NSButton) {
+        logs.removeAll()
+        textFiled.string = ""
+    }
+
     @IBAction func didChangeLevelPopupButton(_ sender:NSPopUpButton) {
         guard let level = Logboard.Level(string: sender.selectedItem?.title ?? "") else {
             return

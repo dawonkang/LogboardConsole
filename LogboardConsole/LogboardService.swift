@@ -10,7 +10,12 @@ final class LogboardService: HaishinKit.NetService {
     weak var delegate:LogboardServiceDelegate?
 
     func client(inputBuffer client: NetClient) {
-        delegate?.onData(Logboard.Data(client.inputBuffer))
-        client.inputBuffer.removeAll()
+        defer {
+            client.inputBuffer.removeAll()
+        }
+        guard let data = Logboard.Data(client.inputBuffer) else {
+            return
+        }
+        delegate?.onData(data)
     }
 }
