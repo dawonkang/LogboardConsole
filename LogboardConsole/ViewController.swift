@@ -1,14 +1,18 @@
 import Cocoa
 import Logboard
 
+extension Logboard.Level {
+    static public let allValues: [Logboard.Level] = [.trace, .debug, .info, .warn, .error]
+}
+
 final class ViewController: NSViewController {
     var service: LogboardService?
 
     @IBOutlet var textFiled: NSTextView!
     @IBOutlet var levelPopupButton: NSPopUpButton!
 
-    private var logs:[Logboard.Data] = []
-    private var level:Logboard.Level = .trace
+    private var logs: [Logboard.Data] = []
+    private var level: Logboard.Level = .trace
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,18 +31,18 @@ final class ViewController: NSViewController {
         }
     }
 
-    @IBAction func didClickedTrash(_ sender:NSButton) {
+    @IBAction func didClickedTrash(_ sender: NSButton) {
         logs.removeAll()
         textFiled.string = ""
     }
 
-    @IBAction func didChangeLevelPopupButton(_ sender:NSPopUpButton) {
+    @IBAction func didChangeLevelPopupButton(_ sender: NSPopUpButton) {
         guard let level = Logboard.Level(string: sender.selectedItem?.title ?? "") else {
             return
         }
         self.level = level
         textFiled.string = ""
-        let logs = self.logs.filter{ level.rawValue <= $0.level.rawValue }
+        let logs = self.logs.filter { level.rawValue <= $0.level.rawValue }
         for log in logs {
             textFiled.textStorage?.append(log.attributedString)
         }
@@ -62,4 +66,3 @@ extension ViewController: LogboardServiceDelegate {
         }
     }
 }
-

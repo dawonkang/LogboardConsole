@@ -30,8 +30,3 @@ logger.appender = socket
 ## License
 New BSD
 
-## Donation
-Bitcoin
-```txt
-1CWA9muX36QKBdJiRQJGpu2HvchfEpJbWr
-```
